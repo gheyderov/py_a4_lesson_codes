@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap");
+html,
+body {
+  background: #e0e5ec;
+  color: #9baacf;
+  font-family: "Maven Pro", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.2rem;
+  gap: 1rem;
+  margin: 0;
+}
+
+/*--------------------------------------------------------------
+#   S C R O L L B A R S
+--------------------------------------------------------------*/
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.25);
+  background-color: rgba(77, 77, 77, 0.015);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.35);
+}
+
+/*--------------------------------------------------------------
+#   N E U M O R P H I C
+--------------------------------------------------------------*/
+.neumorphic {
+  background: #e0e5ec;
+  border-radius: 1.2rem;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  max-width: 100%;
+}
+.neumorphic.outset {
+  box-shadow: 0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9),
+    -0.2rem -0.2rem 0.4rem #f0f2f5;
+}
+.neumorphic.ridge {
+  box-shadow: inset 0.2rem 0.2rem 0.5rem rgba(195, 193, 198, 0.9),
+    inset -0.2rem -0.2rem 0.5rem #fff,
+    0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9), -0.2rem -0.2rem 0.4rem #fff;
+}
+
+/*--------------------------------------------------------------
+#   G E N E R A L   C S S
+--------------------------------------------------------------*/
+.d-flex {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+.bg-green {
+  background-color: #25b47e;
+}
+.bg-blue {
+  background-color: #339af0;
+}
+.text-white {
+  color: #fff;
+}
+.w-80 {
+  width: 80%;
+  max-width: 80%;
+}
+.maintitle {
+  width: 100%;
+  border-radius: 0;
+  padding: 1em 1.5em;
+  margin-bottom: 3em;
+  text-shadow: -1px 2px 3px #0e7d53;
+  font-weight: bold;
+}
+.card {
+  display: block;
+  width: 100%;
+  margin: auto;
+}
+.product {
+  margin-bottom: 1.35em;
+  padding: 0.8em 0.8em 0.5em;
+}
+.product img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  border: 1px solid #e0e5ec;
+  height: 300px;
+}
+.product img:hover {
+  filter: blur(1.5px);
+  filter: opacity(85%);
+  transform: scale(1.15);
+  -webkit-transform: scale(1.15);
+}
+.product-image {
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+.price {
+  font-size: 1.5rem;
+}
+.cart {
+  display: flow-root;
+  margin-bottom: 0.3em;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.btn {
+  width: 3em;
+  height: 3em;
+  display: flex;
+  cursor: pointer;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e0e5ec;
+  position: relative;
+}
+.btn.left {
+  margin-left: 1em;
+}
+.btn::before {
+  content: attr(title);
+  position: absolute;
+  background-color: #000;
+  border-radius: 5px;
+  min-width: 80px;
+  padding: 0.3em;
+  display: none;
+  z-index: 10;
+  top: -2.3em;
+}
+.btn:hover::before {
+  display: block;
+}
+@media (min-width: 768px) {
+  .card {
+    width: 30%;
+  }
+}
