@@ -1,0 +1,142 @@
+source /Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/bin/activate
+gunduz@Gunduzs-MacBook-Air py_a4_lesson_codes % source /Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/bin/activa
+te
+(.venv) gunduz@Gunduzs-MacBook-Air py_a4_lesson_codes % flask shell
+Python 3.9.6 (default, Mar 10 2023, 20:16:38) 
+[Clang 14.0.3 (clang-1403.0.22.14.1)] on darwin
+App: app
+Instance: /Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/instance
+>>> 
+>>> 
+>>> from models import *
+>>> 
+>>> cat1 = Category(title = 'Cat1')
+>>> cat1.save()
+>>> 
+>>> print(cat1.query)
+SELECT category.id AS category_id, category.title AS category_title 
+FROM category
+>>> 
+>>> 
+>>> x = cat1.save()
+>>> 
+>>> print(x.query)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'NoneType' object has no attribute 'query'
+>>> 
+>>> 
+>>> a = Category.query.all()
+>>> a
+[Cat1]
+>>> 
+>>> print(a.query)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'list' object has no attribute 'query'
+>>> 
+>>> 
+>>> a = Category.query.filter(id=1).first()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: filter() got an unexpected keyword argument 'id'
+>>> a = Category.query.filter_by(id=1).first()
+>>> print(a.query)
+SELECT category.id AS category_id, category.title AS category_title 
+FROM category
+>>> 
+>>> 
+>>> exit(*)
+  File "<console>", line 1
+    exit(*)
+          ^
+SyntaxError: invalid syntax
+>>> exit()
+(.venv) gunduz@Gunduzs-MacBook-Air py_a4_lesson_codes % flask shell
+Python 3.9.6 (default, Mar 10 2023, 20:16:38) 
+[Clang 14.0.3 (clang-1403.0.22.14.1)] on darwin
+App: app
+Instance: /Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/instance
+>>> 
+>>> 
+>>> from models import *
+>>> 
+>>> cat2 = Category(title = 'cat2')
+>>> cat2.save()
+>>> 
+>>> 
+>>> p1 = Product(title = 'Product #1', price = 100, description = 'some description', image = 'p1.avif', category_id)
+  File "<console>", line 1
+    p1 = Product(title = 'Product #1', price = 100, description = 'some description', image = 'p1.avif', category_id)
+                                                                                                                    ^
+SyntaxError: positional argument follows keyword argument
+>>> p1 = Product(title = 'Product #1', price = 100, description = 'some description', image = 'p1.avif', category_id = 1)
+>>> p1.save()
+>>> 
+>>> p2 = Product(title = 'Product #2', price = 200, description = 'some description', image = 'p2.avif', category_id = 2)
+>>> p2.save()
+>>> 
+>>> p3 = Product(title = 'Product #3', price = 300, description = 'some description', image = 'p3.avif', category_id = 1)
+>>> p3.save()
+>>> 
+>>> 
+>>> Product.query.all()
+[Product #1, Product #2, Product #3]
+>>> 
+>>> Product.query.filter_by(category_id = 1)
+<flask_sqlalchemy.query.Query object at 0x1059acfd0>
+>>> Product.query.filter_by(category_id = 1).first()
+Product #1
+>>> 
+>>> 
+>>> Product.query.filter_by(title__contains = 'a')
+Traceback (most recent call last):
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/lib/python3.9/site-packages/sqlalchemy/sql/base.py", line 2182, in _entity_namespace_key
+    return getattr(ns, key)  # type: ignore
+AttributeError: type object 'Product' has no attribute 'title__contains'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2002, in filter_by
+    clauses = [
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2003, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/lib/python3.9/site-packages/sqlalchemy/sql/base.py", line 2184, in _entity_namespace_key
+    raise exc.InvalidRequestError(
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "product" has no property "title__contains"
+>>> Product.query.filter_by(title__contains = 'a')
+Traceback (most recent call last):
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/lib/python3.9/site-packages/sqlalchemy/sql/base.py", line 2182, in _entity_namespace_key
+    return getattr(ns, key)  # type: ignore
+AttributeError: type object 'Product' has no attribute 'title__contains'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2002, in filter_by
+    clauses = [
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 2003, in <listcomp>
+    _entity_namespace_key(from_entity, key) == value
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/.venv/lib/python3.9/site-packages/sqlalchemy/sql/base.py", line 2184, in _entity_namespace_key
+    raise exc.InvalidRequestError(
+sqlalchemy.exc.InvalidRequestError: Entity namespace for "product" has no property "title__contains"
+>>> 
+>>> 
+>>> p1
+Product #1
+>>> 
+>>> p1.title
+'Product #1'
+>>> 
+>>> p1.price
+100
+>>> 
+>>> p1.title = 'Product 100'
+>>> p1.save()
+>>> 
+>>> 
+>>> p1.title
+'Product 100'

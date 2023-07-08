@@ -1,0 +1,11 @@
+Flask SQLAlchemy
+Flask Migrate
+
+pip install mysql-connector-python
+
+flask db init
+flask db migrate
+flask db upgrade
+
+
+flask shell
