@@ -27,56 +27,25 @@
     <div class="row">
       <div class="col-md-6">
         <div id="slider" class="owl-carousel product-slider">
+          {% for image in item.images %}
           <div class="item">
-            <img src="{{ url_for('static', filename = 'images/') }}{{item.image}}" />
+            <img src="{{ url_for('static', filename = 'images/') }}{{image.image}}" />
           </div>
-          <div class="item">
-            <img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
-          <div class="item">
-            <img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
-          <div class="item">
-            <img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
+          {% endfor %}
         </div>
         <div id="thumb" class="owl-carousel product-thumb">
+          {% for image in item.images %}
           <div class="item">
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" />
+            <img src="{{ url_for('static', filename = 'images/') }}{{image.image}}" />
           </div>
-          <div class="item">
-            <img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
-          <div class="item">
-            <img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
-          <div class="item">
-            <img src="https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg" />
-          </div>
-          <div class="item">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" />
-          </div>
+          {% endfor %}
         </div>
       </div>
       <div class="col-md-6">
         <div class="product-dtl">
           <div class="product-info">
             <div class="product-name">{{ item.title }}</div>
+            <p>{{ item.category.title }}</p>
             <div class="reviews-counter">
               <div class="rate">
                 <input type="radio" id="star5" name="rate" value="5" checked />
@@ -99,18 +68,17 @@
             <div class="col-md-6">
               <label for="size">Size</label>
               <select id="size" name="size" class="form-control">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
+                {% for size in item.sizes %}
+                <option>{{ size.title }}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="col-md-6">
               <label for="color">Color</label>
               <select id="color" name="color" class="form-control">
-               
-                <option></option>
-               
+               {% for color in item.colors %}
+                <option>{{ color.title }}</option>
+               {% endfor %}
               </select>
             </div>
           </div>
