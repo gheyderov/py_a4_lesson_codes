@@ -36,7 +36,7 @@
         <div id="thumb" class="owl-carousel product-thumb">
           {% for image in item.images %}
           <div class="item">
-            <img src="{{ url_for('static', filename = 'images/') }}{{image.image}}" />
+            <img src="{{ url_for('static', filename = 'images/') }}{{image.image}}"/>
           </div>
           {% endfor %}
         </div>

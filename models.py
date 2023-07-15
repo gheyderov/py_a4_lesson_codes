@@ -164,3 +164,26 @@ class Category(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    company = db.Column(db.String(100))
+    message = db.Column(db.Text)
+    subscribe = db.Column(db.Boolean)
+
+    def __init__(self, name, email, company, message, subscribe):
+        self.name = name
+        self.email = email
+        self.company = company
+        self.message = message
+        self.subscribe = subscribe
+
+    def __repr__(self):
+        return self.name
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
