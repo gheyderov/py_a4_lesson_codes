@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Registration Page</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/register.css') }}">
+{% endblock %}
+
+{% block content %}
+
+
+<form action="#" method="post">
+    {{ form.csrf_token }}
+    <h2>Login</h2>
+    
+    <p>
+        <label for="Username" class="floatLabel">Username</label>
+        <!-- <input id="username" name="username" type="text"> -->
+        {{ form.username }}
+
+    </p>
+    <p>
+        <label for="password" class="floatLabel">Password</label>
+        <!-- <input id="password" name="password" type="password"> -->
+
+        {{ form.password(type="password") }}
+    </p>
+
+    <p>
+        <input type="submit" value="Sign In" id="submit">
+    </p>
+</form>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename = 'js/register.js') }}"></script>
+{% endblock %}

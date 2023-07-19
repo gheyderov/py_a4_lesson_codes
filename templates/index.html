@@ -13,7 +13,11 @@
 {% block content %}
     
 <div class="d-flex">
-    <div class="maintitle neumorphic outset bg-green text-white">Chryss' Plant Shop</div>
+  {% if current_user.is_authenticated %}
+    <div class="maintitle neumorphic outset bg-green text-white">User: {{ current_user.username }}</div>
+  {% else %}
+  <div class="maintitle neumorphic outset bg-green text-white"></div>
+  {% endif %}
   </div>
   <div class="d-flex w-80">
     {% for product in product_lists %}

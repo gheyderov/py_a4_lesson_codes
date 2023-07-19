@@ -7,6 +7,7 @@ __pycache__/
 *.so
 .venv
 mydb/
+migrations/
 
 # Distribution / packaging
 .Python
