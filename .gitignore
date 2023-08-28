@@ -9,6 +9,8 @@ __pycache__/
 .venv/
 mydb/
 migrations/
+pgdb
+pgdb/
 
 # Distribution / packaging
 .Python
