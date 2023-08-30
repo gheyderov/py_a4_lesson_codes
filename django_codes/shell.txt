@@ -1,0 +1,126 @@
+gunduz@Gunduzs-MacBook-Air py_a4_lesson_codes % cd django_codes 
+gunduz@Gunduzs-MacBook-Air django_codes % source .venv/bin/activate
+(.venv) gunduz@Gunduzs-MacBook-Air django_codes % python3 manage.py shell
+Python 3.9.6 (default, Mar 10 2023, 20:16:38) 
+[Clang 14.0.3 (clang-1403.0.22.14.1)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> 
+>>> from stories.models import *
+>>> 
+>>> Recipe.objects.all()
+<QuerySet [<Recipe: Recipe #1>, <Recipe: Recipe #2>]>
+>>> Category.objects.all()
+<QuerySet [<Category: Women>, <Category: Men>, <Category: Kids>, <Category: Women / Jacket>, <Category: Men / Jacket>, <Category: Food>, <Category: Drinks>]>
+>>> 
+>>> 
+>>> Recipe.objects.get(id=1)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+stories.models.Recipe.DoesNotExist: Recipe matching query does not exist.
+>>> Recipe.objects.get(id=2)
+<Recipe: Recipe #1>
+>>> 
+>>> 
+>>> Recipe.objects.get(id=2)
+<Recipe: Recipe #1>
+>>> Recipe.objects.get(id=20)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/query.py", line 637, in get
+    raise self.model.DoesNotExist(
+stories.models.Recipe.DoesNotExist: Recipe matching query does not exist.
+>>> 
+>>> 
+>>> Recipe.objects.filter(id=20)
+<QuerySet []>
+>>> 
+>>> 
+>>> Recipe.objects.filter(id=2)
+<QuerySet [<Recipe: Recipe #1>]>
+>>> 
+>>> 
+>>> cat1 = Category(title = 'Sweet')
+>>> 
+>>> cat1.save()
+>>> 
+>>> 
+>>> tag1 = Tag(title = 'sweet')
+>>> tag1.save()
+>>> 
+>>> 
+>>> r = Recipe(title = 'Recipe #4', small_description = 'test', description = 'test', image = 'image.png', cover_image = 'image.png', category = cat1)
+>>> 
+>>> r.save()
+>>> 
+>>> 
+>>> r.tags.add(tag1)
+>>> 
+>>> 
+>>> Category.objects.filter(title__contains = 'S')
+<QuerySet [<Category: Sweet>]>
+>>> Category.objects.filter(title__contains = 'J')
+<QuerySet [<Category: Women / Jacket>, <Category: Men / Jacket>]>
+>>> Category.objects.filter(title__contains = 's')
+<QuerySet [<Category: Kids>, <Category: Drinks>]>
+>>> 
+>>> 
+>>> Category.objects.filter(title__icontains = 's')
+<QuerySet [<Category: Kids>, <Category: Drinks>, <Category: Sweet>]>
+>>> 
+>>> 
+>>> Recipe.objects.filter(category__name = 'Food')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1312, in build_lookup
+    lhs = self.try_transform(lhs, lookup_name)
+  File "/Users/gunduz/Desktop/Tech-Academy/py_a4_lesson_codes/django_codes/.venv/lib/python3.9/site-packages/django/db/models/sql/query.py", line 1356, in try_transform
+    raise FieldError(
+django.core.exceptions.FieldError: Unsupported lookup 'name' for ForeignKey or join on the field not permitted.
+>>> Recipe.objects.filter(category__title = 'Food')
+<QuerySet [<Recipe: Recipe #1>]>
+>>> 
+>>> Recipe.objects.filter(category__title = 'Drinks')
+<QuerySet [<Recipe: Recipe #2>]>
+>>> 
+>>> Recipe.objects.filter(category__title = 'Drinks', category__title = 'Food'))
+  File "<console>", line 1
+    Recipe.objects.filter(category__title = 'Drinks', category__title = 'Food'))
+                                                                               ^
+SyntaxError: unmatched ')'
+>>> Recipe.objects.filter(category__title = 'Drinks', category__title = 'Food')
+  File "<console>", line 1
+SyntaxError: keyword argument repeated: category__title
+>>> Recipe.objects.filter(category__title = 'Drinks', category__title = 'Food')
+KeyboardInterrupt
+>>> 
+KeyboardInterrupt
+>>> 
+KeyboardInterrupt
+>>> 
+>>> 
+>>> Recipe.objects.filter(models.Q(category__title = 'Drinks') | models.Q(category__title = 'Food')
+... 
+KeyboardInterrupt
+>>> Recipe.objects.filter(models.Q(category__title = 'Drinks') | models.Q(category__title = 'Food'))
+<QuerySet [<Recipe: Recipe #1>, <Recipe: Recipe #2>]>
