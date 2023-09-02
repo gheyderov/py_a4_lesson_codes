@@ -9,6 +9,7 @@ class Recipe(AbstractModel):
     category = models.ForeignKey('Category', related_name='recipes', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag', related_name='recipes')
     author = models.ForeignKey(User, related_name='recipes', on_delete=models.CASCADE)
+    property_values = models.ManyToManyField('PropertyValue', related_name='recipes', blank=True)
 
     title = models.CharField('title', max_length=155)
     small_description = models.CharField('small_description', max_length=200)
@@ -37,6 +38,21 @@ class Category(AbstractModel):
     
 
 class Tag(AbstractModel):
+    title = models.CharField('title', max_length=155)
+
+    def __str__(self):
+        return self.title
+    
+
+class Property(AbstractModel):
+    title = models.CharField('title', max_length=155)
+
+    def __str__(self):
+        return self.title
+    
+
+class PropertyValue(AbstractModel):
+    property = models.ForeignKey('Property', related_name='property_values', on_delete=models.CASCADE)
     title = models.CharField('title', max_length=155)
 
     def __str__(self):

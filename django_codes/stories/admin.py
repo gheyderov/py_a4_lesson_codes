@@ -1,5 +1,5 @@
 from django.contrib import admin
-from stories.models import Recipe, Category, Tag
+from stories.models import Recipe, Category, Tag, Property, PropertyValue
 
 # Register your models here.
 
@@ -7,3 +7,5 @@ from stories.models import Recipe, Category, Tag
 admin.site.register(Recipe)
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(Property)
+admin.site.register(PropertyValue)

@@ -124,3 +124,10 @@ KeyboardInterrupt
 KeyboardInterrupt
 >>> Recipe.objects.filter(models.Q(category__title = 'Drinks') | models.Q(category__title = 'Food'))
 <QuerySet [<Recipe: Recipe #1>, <Recipe: Recipe #2>]>
+
+
+python3 manage.py dumpdata > db.json
+
+python3 manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+
+python3 manage.py loaddata db.json

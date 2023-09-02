@@ -1,0 +1,49 @@
+# backup
+docker exec 552cde721be0 mysqldump -u root --password=12345 project > backup.sql  
+docker exec c23d57dcd7c2 mysqldump -u root --password=12345 project > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql  
+
+# restore
+cat backup.sql | docker exec -i c23d57dcd7c2 mysql -u root --password=12345 project
+
+
+create table authors(
+   id int unsigned AUTO_INCREMENT PRIMARY KEY,
+   full_name varchar(100) NOT NULL,
+   birth_year smallint(4) NOT NULL
+);
+
+create table books(
+   id int unsigned AUTO_INCREMENT PRIMARY KEY,
+   title varchar(150) NOT NULL,
+   description text NOT NULL,
+   price decimal(7,2),
+   author_id int unsigned NOT NULL,
+   Foreign KEY (author_id) REFERENCES authors(id) on delete cascade
+);
+
+insert into authors(full_name, birth_year) values 
+('Fyodor  Dostoyevski', 1821),
+('Alber Kamyu', 1913),
+('Viktor Huqo', 1802),
+('Corc Oruell', 1903),
+('Dan Brown', 1964);
+
+insert into books (title, description, price, author_id) values
+('Cinayət və cəza', 'some text', '10.25', 1),
+('Yad', 'some text', '5.00', 2),
+('Karamazov qardaşları', 'some text', '8.00', 1),
+('1984', 'some text', '6.00', 4),
+('Səfillər', 'some text', '12.00', 3),
+('Melekler ve seytanlar', 'some text', '9.00', 5),
+('Heyvanistan', 'some text', '6.00', 4);
+
+select books.id, books.title, books.description, authors.full_name, authors.birth_year  from books
+inner join authors on books.author_id = authors.id;
+
+select authors.full_name, AVG(books.price) as bp  from books
+inner join authors on books.author_id = authors.id group by books.author_id 
+having  bp > 10 ;
+
+
+select * from books where books.author_id in (select DISTINCT books.author_id from books
+inner join authors on books.author_id = authors.id);
