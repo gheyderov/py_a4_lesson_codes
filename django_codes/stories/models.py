@@ -10,6 +10,7 @@ class Recipe(AbstractModel):
     tags = models.ManyToManyField('Tag', related_name='recipes')
     author = models.ForeignKey(User, related_name='recipes', on_delete=models.CASCADE)
     property_values = models.ManyToManyField('PropertyValue', related_name='recipes', blank=True)
+    slug = models.SlugField('Slug', max_length=200)
 
     title = models.CharField('title', max_length=155)
     small_description = models.CharField('small_description', max_length=200)
