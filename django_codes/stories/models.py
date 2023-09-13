@@ -20,6 +20,14 @@ class Recipe(AbstractModel):
 
     def __str__(self):
         return self.title
+    
+
+class RecipeImage(AbstractModel):
+    recipe = models.ForeignKey('Recipe', related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField('image', upload_to='recipe_images/')
+
+    def __str__(self):
+        return self.recipe.title
 
 
 class Category(AbstractModel):
