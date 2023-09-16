@@ -42,7 +42,7 @@ class Category(AbstractModel):
 
     class Meta:
         verbose_name_plural = 'Categories'
-        # ordering = ['created_at']
+        # ordering = ['-created_at']
 
     
 
