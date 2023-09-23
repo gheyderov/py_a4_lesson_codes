@@ -26,6 +26,7 @@
 <section class="ftco-section">
     <div class="container">
         <div class="row">
+            {% include 'includes/message.html' %}
             <div class="col-lg-9">
                 <div class="row">
                     {% for recipe in recipe_list %}
@@ -43,8 +44,12 @@
                                 <h3><a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.title }}</a></h3>
                                 <p>{{recipe.description }}
                                 </p>
-                                <p class="mb-0"><a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary">Read More <span
-                                        class="icon-arrow_forward ml-4"></span></a></p>
+                                <p class="mb-0">
+                                    <a href="{% url 'like_post' recipe.id %}" class="btn btn-primary">Like <span
+                                        class="icon-arrow_forward ml-4"></span></a>
+                                    <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary">Read More <span
+                                        class="icon-arrow_forward ml-4"></span></a>
+                                    </p>
                             </div>
                         </div>
                     </div>
