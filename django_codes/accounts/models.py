@@ -6,3 +6,9 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     bio = models.CharField('bio', max_length=255, null=True, blank=True)
     image = models.ImageField('image', upload_to='user_profile_images/', null=True, blank=True)
+
+    def get_image(self):
+        if self.image:
+            return self.image.url
+        else:
+            return '/static/images/nophoto.jpeg/'
