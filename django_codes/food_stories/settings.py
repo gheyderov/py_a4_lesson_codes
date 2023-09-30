@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'core',
     'accounts',
     'stories',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,25 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'g.heyderov@gmail.com'
+EMAIL_HOST_PASSWORD = 'smtsxlkagbrhboao'
+EMAIL_PORT = 587
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+SOCIAL_AUTH_FACEBOOK_KEY = 820022489824020      # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'a1cef1bdfce437b4130ddec5ad944223'  # App Secret
