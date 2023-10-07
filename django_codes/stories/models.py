@@ -66,3 +66,13 @@ class PropertyValue(AbstractModel):
 
     def __str__(self):
         return self.title
+    
+
+class Comment(AbstractModel):
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='children', null=True, blank=True)
+    message = models.TextField('messages')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='comments')
+
+    def __str__(self) -> str:
+        return f'{self.user.username} / {self.recipe.title}'

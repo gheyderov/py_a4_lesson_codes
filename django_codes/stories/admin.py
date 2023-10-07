@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from stories.models import Recipe, Category, Tag, Property, PropertyValue, RecipeImage
+from stories.models import Recipe, Category, Tag, Property, PropertyValue, RecipeImage, Comment
 
 # Register your models here.
 
@@ -11,6 +11,7 @@ admin.site.register(Tag)
 admin.site.register(Property)
 admin.site.register(PropertyValue)
 admin.site.register(RecipeImage)
+admin.site.register(Comment)
 
 
 class RecipeAdminForm(forms.ModelForm):

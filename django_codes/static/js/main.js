@@ -277,3 +277,12 @@
 
 })(jQuery);
 
+
+
+let reply = document.getElementById('replyButton')
+let subform = document.getElementById('subForm')
+
+reply.addEventListener('click', function(e){
+	e.preventDefault()
+	subform.classList.toggle('displayForm')
+})
