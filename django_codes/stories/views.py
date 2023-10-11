@@ -1,12 +1,31 @@
 from typing import Any
+from django.db.models.query import QuerySet
+from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, HttpResponse
 from stories.models import Recipe, Category, Tag
 from django.contrib import messages
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView
 from django.views.generic.edit import FormMixin
-from stories.forms import CommentForm, SubCommentForm
+from stories.forms import CommentForm, SubCommentForm, RecipeCreateForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class RecipeUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'create_story.html'
+    form_class = RecipeCreateForm
+    model = Recipe
+
+
+class RecipeCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'create_story.html'
+    form_class = RecipeCreateForm
+    # success_url = reverse_lazy('home')
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 # Create your views here.
 
@@ -25,6 +44,19 @@ class RecipeListView(ListView):
     context_object_name = 'recipes'
     paginate_by = 2
     # recipe_list
+    # queryset = Recipe.objects.all()
+
+    def get_queryset(self) -> QuerySet[Any]:
+        queryset = super().get_queryset()
+        category = self.request.GET.get('category')
+        tag = self.request.GET.get('tag')
+        if category:
+            queryset = queryset.filter(category__id = category)
+        if tag:
+            queryset = queryset.filter(tags__id = tag)
+        if category and tag:
+            queryset = queryset.filter(category__id = category, tags__id = tag)
+        return queryset
 
 
 def stories(request):

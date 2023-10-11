@@ -33,7 +33,7 @@
                     <div class="col-md-6 col-lg-12 ftco-animate">
                         <div class="blog-entry d-lg-flex">
                             <div class="half">
-                                <a href="{% url 'recipe_detail' recipe.id %}" class="img d-flex align-items-end"
+                                <a href="{{recipe.get_absolute_url}}" class="img d-flex align-items-end"
                                    style="background-image: url({{recipe.image.url}});">
                                     <div class="overlay"></div>
                                 </a>
@@ -41,13 +41,13 @@
                             <div class="text px-md-4 px-lg-5 half pt-3">
                                 <p class="meta d-flex"><span class="pr-3">{{recipe.category }}</span><span class="ml-auto pl-3">{{recipe.created_at}}</span>
                                 </p>
-                                <h3><a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.title }}</a></h3>
+                                <h3><a href="{{recipe.get_absolute_url}}">{{ recipe.title }}</a></h3>
                                 <p>{{recipe.description }}
                                 </p>
                                 <p class="mb-0">
                                     <a href="{% url 'like_post' recipe.id %}" class="btn btn-primary">Like <span
                                         class="icon-arrow_forward ml-4"></span></a>
-                                    <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary">Read More <span
+                                    <a href="{{recipe.get_absolute_url}}" class="btn btn-primary">Read More <span
                                         class="icon-arrow_forward ml-4"></span></a>
                                     </p>
                             </div>

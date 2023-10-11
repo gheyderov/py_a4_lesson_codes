@@ -125,7 +125,7 @@
                     <ul class="categories">
                         <h3 class="heading mb-4">Categories</h3>
                         {% for category in categories %}
-                        <li><a href="#">{{category.title}} <span>({{category.recipes.count}})</span></a></li>
+                        <li><a href="{% url 'recipes' %}?category={{category.id}}">{{category.title}} <span>({{category.recipes.count}})</span></a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -171,7 +171,7 @@
                     <h3 class="heading mb-4">Tag Cloud</h3>
                     <div class="tagcloud">
                         {% for tag in tags %}
-                        <a href="#" class="tag-cloud-link">{{tag.title}}</a>
+                        <a href="{% url 'recipes' %}?tag={{tag.id}}" class="tag-cloud-link">{{tag.title}}</a>
                         {% endfor %}
                     </div>
                 </div>
