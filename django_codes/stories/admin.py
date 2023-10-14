@@ -38,6 +38,7 @@ class RecipeAdmin(admin.ModelAdmin):
     list_filter = ['category', 'tags']
     inlines = [RecipeInline]
     form = RecipeAdminForm
+    readonly_fields = ['slug']
 
     def get_tags(self, obj):
         arr = []

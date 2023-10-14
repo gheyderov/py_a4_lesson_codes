@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'food_stories.middleware.GetUserIpsMiddleware',
+    'food_stories.middleware.BlockUserMiddleware'
 ]
 
 ROOT_URLCONF = 'food_stories.urls'

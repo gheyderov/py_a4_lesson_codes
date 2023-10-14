@@ -12,13 +12,14 @@ class Recipe(AbstractModel):
     author = models.ForeignKey(User, related_name='recipes', on_delete=models.CASCADE)
 
     title = models.CharField('title', max_length=155)
+    slug = models.SlugField(null=True, blank=True)
     small_description = models.CharField('small_description', max_length=200)
     description = models.TextField('description')
     image = models.ImageField('image', upload_to='recipe_images/')
     cover_image = models.ImageField('cover_image', upload_to='cover_images/')
 
     def get_absolute_url(self):
-        return reverse_lazy('recipe_detail', kwargs = {'pk' : self.pk})
+        return reverse_lazy('recipe_detail', kwargs = {'slug' : self.slug})
 
     def __str__(self):
         return self.title
