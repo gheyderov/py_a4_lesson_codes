@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-18 16:29+0000\n"
+"PO-Revision-Date: 2023-10-18 16:29+0000\n"
+"Last-Translator: John Doe <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
+
+#: core/templates/includes/navbar.html:12
+msgid "Home"
+msgstr "Ana səhifə"
+
+#: core/templates/includes/navbar.html:13
+msgid "About"
+msgstr "Haqqımızda"
+
+#: core/templates/includes/navbar.html:14
+msgid "Stories"
+msgstr "Hekayələr"
+
+#: core/templates/includes/navbar.html:15
+msgid "Recipes"
+msgstr "Reseptler"
+
+#: core/templates/includes/navbar.html:36
+msgid "Logout"
+msgstr "Çıxış"
+
+#: core/views.py:42
+msgid "Thanks for your message!"
+msgstr "Təşəkkürlər"
