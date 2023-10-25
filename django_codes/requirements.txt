@@ -5,11 +5,15 @@ charset-normalizer==3.3.0
 cryptography==41.0.4
 defusedxml==0.8.0rc2
 Django==4.2.4
+django-filter==23.3
 django-jazzmin==2.6.0
 django-modeltranslation==0.18.11
 django-rosetta==0.9.9
+djangorestframework==3.14.0
 Faker==19.10.0
 idna==3.4
+importlib-metadata==6.8.0
+Markdown==3.5
 oauthlib==3.2.2
 Pillow==10.0.0
 polib==1.2.0
@@ -18,6 +22,7 @@ pycparser==2.21
 PyJWT==2.8.0
 python-dateutil==2.8.2
 python3-openid==3.2.0
+pytz==2023.3.post1
 requests==2.31.0
 requests-oauthlib==1.3.1
 six==1.16.0
@@ -26,3 +31,4 @@ social-auth-core==4.4.2
 sqlparse==0.4.4
 typing_extensions==4.7.1
 urllib3==2.0.5
+zipp==3.17.0

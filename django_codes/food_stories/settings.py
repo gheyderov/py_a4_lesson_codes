@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "accounts",
     "stories",
     "social_django",
-    'rosetta'
+    'rosetta',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

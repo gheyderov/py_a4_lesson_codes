@@ -18,6 +18,9 @@ class Recipe(AbstractModel):
     image = models.ImageField('image', upload_to='recipe_images/')
     cover_image = models.ImageField('cover_image', upload_to='cover_images/')
 
+    def author_name(self):
+        return self.author.get_full_name()
+
     def get_absolute_url(self):
         return reverse_lazy('recipe_detail', kwargs = {'slug' : self.slug})
 
