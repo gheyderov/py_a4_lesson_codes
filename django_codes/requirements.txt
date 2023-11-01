@@ -10,6 +10,7 @@ django-jazzmin==2.6.0
 django-modeltranslation==0.18.11
 django-rosetta==0.9.9
 djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.0
 Faker==19.10.0
 idna==3.4
 importlib-metadata==6.8.0

@@ -18,6 +18,7 @@ class TagSerializer(serializers.ModelSerializer):
 class RecipeCreateSerializer(serializers.ModelSerializer):
 
     slug = serializers.SlugField(read_only = True)
+    author = serializers.PrimaryKeyRelatedField(read_only = True)
 
     class Meta:
         model = Recipe
@@ -34,6 +35,11 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'author'
         )
 
+    def validate(self, attrs):
+        request = self.context['request']
+        attrs['author'] = request.user
+        return super().validate(attrs)
+    
 
 class RecipeSerializer(serializers.ModelSerializer):
 

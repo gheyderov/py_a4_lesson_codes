@@ -4,6 +4,7 @@ from stories.api.serializers import CategorySerializer, RecipeSerializer, Recipe
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView, CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
@@ -21,11 +22,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
 class RecipeRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeCreateSerializer
+    
 
 
 class RecipeAPIView(ListCreateAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
