@@ -26,6 +26,9 @@ class RecipeRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
 
 
 class RecipeAPIView(ListCreateAPIView):
+    """
+        Recipe List Create
+    """
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
