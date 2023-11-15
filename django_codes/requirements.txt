@@ -6,6 +6,7 @@ charset-normalizer==3.3.0
 cryptography==41.0.4
 defusedxml==0.8.0rc2
 Django==4.2.4
+django-cors-headers==4.3.1
 django-filter==23.3
 django-jazzmin==2.6.0
 django-modeltranslation==0.18.11

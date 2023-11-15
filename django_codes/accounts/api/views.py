@@ -8,4 +8,4 @@ class UserTokenObtainPairView(TokenObtainPairView):
 
     @swagger_auto_schema(responses={200: UserTokenSerializer(many=True)})
     def post(self, request, *args, **kwargs):
-        return super().post(*args, **kwargs)
+        return super().post(request, *args, **kwargs)

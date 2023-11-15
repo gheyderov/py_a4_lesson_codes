@@ -1,6 +1,6 @@
-from stories.models import Category, Recipe
+from stories.models import Category, Recipe, Tag
 from django.http import JsonResponse
-from stories.api.serializers import CategorySerializer, RecipeSerializer, RecipeCreateSerializer
+from stories.api.serializers import CategorySerializer, RecipeSerializer, RecipeCreateSerializer, TagSerializer
 from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView, CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework import viewsets
@@ -47,6 +47,10 @@ def categories(request):
     #     category_dict.append({"cat_id": category.id, "cat_title": category.title})
     return JsonResponse(data=serializer.data, safe=False)
 
+
+class TagListView(ListAPIView):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
 
 # @api_view(['GET', 'POST'])
 # def recipes(request):
