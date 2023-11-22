@@ -1,47 +1,63 @@
-from stories.models import Category, Recipe, Tag
+from stories.models import Category, Recipe, Tag, Subscriber
 from django.http import JsonResponse
-from stories.api.serializers import CategorySerializer, RecipeSerializer, RecipeCreateSerializer, TagSerializer
+from stories.api.serializers import (
+    CategorySerializer,
+    RecipeSerializer,
+    RecipeCreateSerializer,
+    TagSerializer,
+    SubscriberSerializer
+)
 from rest_framework.decorators import api_view
-from rest_framework.generics import ListAPIView, CreateAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import (
+    ListAPIView,
+    CreateAPIView,
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
+
+class SubscriberCreateAPIView(CreateAPIView):
+    serializer_class = SubscriberSerializer
+    queryset = Subscriber.objects.all()
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializers = {
-        'default' : RecipeSerializer,
-        'create' : RecipeCreateSerializer,
-        'update' : RecipeCreateSerializer
+        "default": RecipeSerializer,
+        "create": RecipeCreateSerializer,
+        "update": RecipeCreateSerializer,
     }
 
     def get_serializer_class(self):
-        return self.serializers.get(self.action, self.serializers['default'])
+        return self.serializers.get(self.action, self.serializers["default"])
 
 
 class RecipeRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeCreateSerializer
-    
 
 
 class RecipeAPIView(ListCreateAPIView):
     """
-        Recipe List Create
+    Recipe List Create
     """
+
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def get_serializer_class(self):
-        if self.request.method == 'POST':
+        if self.request.method == "POST":
             return RecipeCreateSerializer
         return self.serializer_class
 
 
 def categories(request):
     category_list = Category.objects.all()  # list
-    serializer = CategorySerializer(category_list, many = True)
+    serializer = CategorySerializer(category_list, many=True)
     # category_dict = []
     # for category in category_list:
     #     category_dict.append({"cat_id": category.id, "cat_title": category.title})
@@ -51,6 +67,7 @@ def categories(request):
 class TagListView(ListAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
 
 # @api_view(['GET', 'POST'])
 # def recipes(request):

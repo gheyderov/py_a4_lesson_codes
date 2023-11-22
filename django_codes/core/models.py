@@ -1,3 +1,4 @@
+from collections.abc import Iterable
 from django.db import models
 from core.validators import validate_gmail
 

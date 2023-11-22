@@ -6,6 +6,14 @@ User = get_user_model()
 
 # Create your models here.
 
+
+class Subscriber(AbstractModel):
+    email = models.EmailField(max_length=40, unique=True)
+
+    def __str__(self) -> str:
+        return self.email
+
+
 class Recipe(AbstractModel):
     category = models.ForeignKey('Category', related_name='recipes', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag', related_name='recipes')

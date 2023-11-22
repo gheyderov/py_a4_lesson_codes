@@ -131,3 +131,6 @@ python3 manage.py dumpdata > db.json
 python3 manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
 
 python3 manage.py loaddata db.json
+
+
+
