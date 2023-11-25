@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'drf_spectacular',
     "corsheaders",
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -216,3 +217,7 @@ LOGOUT_REDIRECT_URL = "login"
 
 SOCIAL_AUTH_FACEBOOK_KEY = 820022489824020  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = "a1cef1bdfce437b4130ddec5ad944223"  # App Secret
+
+
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"

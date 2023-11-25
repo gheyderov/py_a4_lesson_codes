@@ -8,6 +8,12 @@ from core.models import Contact
 from django.contrib import messages
 from django.views.generic import CreateView
 from django.utils.translation import gettext_lazy as _
+from core.tasks import export_data
+
+
+def export_view(request):
+    export_data.delay()
+    return HttpResponse('success')
 
 
 # Create your views here.
