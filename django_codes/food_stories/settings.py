@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-reru0w*_%!frr@6_c5(iq8c2-d*^s&^ub5vg!!cs=ed*oto(t@"
+SECRET_KEY = os.environ.get('SECRET_KEY', 'wg=5ep%i^=im6-j$&g+4n%xu=g545em7!yj@x*jdrldo%n_n=n')
+# SECRET_KEY = "django-insecure-reru0w*_%!frr@6_c5(iq8c2-d*^s&^ub5vg!!cs=ed*oto(t@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False if os.environ.get('DEBUG') else True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -95,11 +96,11 @@ WSGI_APPLICATION = "food_stories.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "stories",
-        "USER": "tech",
-        "PASSWORD": 12345,
-        "HOST": "localhost",
-        "PORT": 5432,
+        "NAME": os.environ.get('POSTGRES_DB', 'stories'),
+        "USER": os.environ.get('POSTGRES_USER', 'tech'),
+        "PASSWORD": os.environ.get('POSTGRES_PASSWORD', '12345'),
+        "HOST": os.environ.get('POSTGRES_HOST', 'localhost'),
+        "PORT": os.environ.get('POSTGRES_PORT', '5432'),
     }
 }
 
@@ -219,5 +220,5 @@ SOCIAL_AUTH_FACEBOOK_KEY = 820022489824020  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = "a1cef1bdfce437b4130ddec5ad944223"  # App Secret
 
 
-CELERY_BROKER_URL = "redis://localhost:6379"
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_URL = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"
+CELERY_RESULT_BACKEND = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"

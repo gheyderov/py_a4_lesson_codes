@@ -13,20 +13,6 @@ services:
       POSTGRES_DB: 'stories'
     volumes:
       - ./pgdb:/var/lib/postgresql/data
-
-  web:
-    container_name: food_stories
-    build: .
-    ports:
-      - 8002:8000
-    depends_on:
-      - "db"
-      - "redis"
-    env_file:
-      - .envv
-      
-
-
       
   adminer:
     image: adminer

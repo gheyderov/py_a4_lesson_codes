@@ -1,0 +1,9 @@
+DEBUG = False
+POSTGRES_DB = 'stories'
+POSTGRES_PASSWORD =  12345
+POSTGRES_USER = 'tech'
+POSTGRES_HOST = 'db'
+POSTGRES_PORT = 5432
+REDIS_HOST = 'redis'
+
+SECRET_KEY = "wg=5ep%i^=im6-j$&g+4n%xu=g545em7!yj@x*jdrldo%n_n=n"
