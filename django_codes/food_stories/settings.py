@@ -21,13 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'wg=5ep%i^=im6-j$&g+4n%xu=g545em7!yj@x*jdrldo%n_n=n')
-# SECRET_KEY = "django-insecure-reru0w*_%!frr@6_c5(iq8c2-d*^s&^ub5vg!!cs=ed*oto(t@"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.environ.get('DEBUG') else True
-
-ALLOWED_HOSTS = ["*"]
+DEBUG = int(os.environ.get("DEBUG", default=1))
+PROD = not DEBUG
+SECRET_KEY = os.environ.get("SECRET_KEY", "&*lc95ge)ooukh-jvf$ad&h9w64rpp4@s_)ar_dk9o%*ej63h)")
+ALLOWED_HOSTS = ['*'] # os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -99,7 +96,7 @@ DATABASES = {
         "NAME": os.environ.get('POSTGRES_DB', 'stories'),
         "USER": os.environ.get('POSTGRES_USER', 'tech'),
         "PASSWORD": os.environ.get('POSTGRES_PASSWORD', '12345'),
-        "HOST": os.environ.get('POSTGRES_HOST', 'localhost'),
+        "HOST": os.environ.get('POSTGRES_HOST', '135.181.82.72'),
         "PORT": os.environ.get('POSTGRES_PORT', '5432'),
     }
 }
@@ -158,9 +155,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
-
-STATICFILES_DIRS = [BASE_DIR / "static"]
+if PROD:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static")
+    ]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
@@ -222,3 +222,6 @@ SOCIAL_AUTH_FACEBOOK_SECRET = "a1cef1bdfce437b4130ddec5ad944223"  # App Secret
 
 CELERY_BROKER_URL = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"
 CELERY_RESULT_BACKEND = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"
+
+
+# CSRF_TRUSTED_ORIGINS=['https://*.bridgerds.com', 'https://bridgerds.com']
