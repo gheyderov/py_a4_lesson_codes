@@ -1,4 +1,4 @@
-FROM python
+FROM python:3.11
 ARG DIR=/code
 
 WORKDIR $DIR
